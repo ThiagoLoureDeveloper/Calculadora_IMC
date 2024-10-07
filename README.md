@@ -16,7 +16,7 @@ A **Calculadora IMC** é uma aplicação simples que permite calcular o Índice 
 - Suporte para dispositivos móveis.
 - Exibição de resultados com animações.
 
-## Tecnologias que eu uso no meu dia
+## Tecnologias Utilizadas
 
 <div style="display: inline_block">
   <img align="center" alt="html5" src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" />
