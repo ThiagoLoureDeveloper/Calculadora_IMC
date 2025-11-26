@@ -187,6 +187,7 @@ p {
   main {
     width: 100%;
     height: 100vh;
+    overflow: hidden;
   }
   .card {
     display: flex;
@@ -230,6 +231,7 @@ p {
   main {
     width: 100%;
     height: 100vh;
+    overflow: hidden;
   }
   .card {
     display: flex;
