@@ -7,30 +7,37 @@
   --background-botoes: #821131;
   --background-botoes-2: #c7253e;
 }
+
+/* ===== RESET ===== */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: Arial, sans-serif;
 }
+
+/* Permite scroll no site */
+html,
+body {
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: auto;
+}
+
+/* ===== MAIN ===== */
 main {
-  overflow: hidden;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   background: url(/imagens/fundo-site.png) no-repeat center;
   background-size: cover;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-}
-form {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 15px;
-  max-width: 1200px;
+  padding: 20px;
 }
 
+/* ===== CARD PRINCIPAL ===== */
 .card {
   display: flex;
   flex-direction: column;
@@ -44,12 +51,24 @@ form {
   padding: 30px;
   border-radius: 5px;
 }
+
 h2 {
   font-size: clamp(24px, 4vw, 40px);
   color: var(--text-h1);
   text-shadow: 0 0 10px var(--background-botoes),
     0 0 5px var(--background-botoes-2);
+  text-align: center;
 }
+
+/* ===== FORM ===== */
+form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 15px;
+  max-width: 1200px;
+  width: 100%;
+}
+
 .form-group {
   display: grid;
   grid-template-columns: 1fr 2fr;
@@ -60,7 +79,6 @@ h2 {
 
 label {
   display: block;
-  flex: 1 0 200px;
   margin-right: 10px;
   font-size: clamp(5px, 1.3vw, 45px);
   color: var(--text-h1);
@@ -68,27 +86,25 @@ label {
   text-shadow: 0 0 10px var(--background-botoes),
     0 0 5px var(--background-botoes-2);
 }
+
 input {
   width: 100%;
   padding: 8px;
-  box-sizing: border-box;
-  margin-bottom: 12px;
   font-weight: bold;
-}
-input[type="number"] {
-  flex: 2;
-  padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  outline: none;
+}
+
+input[type="number"] {
   -moz-appearance: textfield;
 }
+
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
-  margin: 0;
 }
 
+/* ===== BOTÕES ===== */
 .botoes {
   display: flex;
   gap: 10px;
@@ -109,8 +125,15 @@ button {
 
 button:hover {
   background: var(--background-botoes-2);
-  font-weight: bold;
 }
+
+.botoes button:disabled {
+  background-color: #ddd;
+  cursor: not-allowed;
+  color: var(--text-color);
+}
+
+/* ===== RESULTADO ===== */
 .resultado-card {
   display: none;
   flex-direction: column;
@@ -128,23 +151,26 @@ button:hover {
   opacity: 0;
   transform: scale(0.9);
 }
-.botoes button:disabled {
-  background-color: #ddd;
-  cursor: not-allowed;
-  color: var(--text-color);
-  font-weight: bold;
+
+.resultado-card.show {
+  display: flex;
+  opacity: 1;
+  transform: scale(1);
 }
-h3 {
-  font-size: clamp(24px, 1.5vw, 40px);
-  margin-bottom: 20px;
-  text-shadow: 0 0 10px var(--background-botoes),
-    0 0 5px var(--background-botoes-2);
+
+.resultado-card.hide {
+  animation: slideDown 0.5s ease-out forwards;
 }
-p {
-  font-size: clamp(24px, 1.1vw, 40px);
-  text-shadow: 0 0 10px var(--background-botoes),
-    0 0 5px var(--background-botoes-2);
+
+.resultado-card h3,
+.resultado-card p {
+  display: flex;
+  font-size: clamp(18px, 2vw, 40px);
+  justify-content: center;
+  align-items: center;
 }
+
+/* ===== ANIMAÇÕES ===== */
 @keyframes slideUp {
   from {
     transform: translateY(100%);
@@ -167,56 +193,30 @@ p {
   }
 }
 
-.resultado-card.show {
-  display: flex;
-  opacity: 1;
-  transform: scale(1);
-}
+/* ==========================================================
+   📱 RESPONSIVIDADE
+   ========================================================== */
 
-.resultado-card.hide {
-  animation: slideDown 0.5s ease-out forwards;
-}
-.resultado-card h3,
-.resultado-card p {
-  display: flex;
-  font-size: clamp(18px, 2vw, 40px);
-  justify-content: center;
-  align-items: center;
-}
+/* ===== Telas até 1240px ===== */
 @media (max-width: 1240px) {
   main {
-    width: 100%;
-    height: 100vh;
-    overflow: hidden;
+    height: auto;
   }
+
   .card {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 100svw;
-    height: 90svh;
-    margin: 20px;
-    padding: 10px 20px;
+    width: 100%;
+    height: auto;
+    padding: 20px;
   }
-  .card h2 {
-    text-align: center;
-  }
+
   .resultado-card {
     width: 100%;
-    height: 120px;
-    margin: 20px;
-    padding: 10px 20px;
+    height: auto;
+    padding: 20px;
   }
-  .resultado-card h3,
-  .resultado-card p {
-    display: flex;
-    font-size: clamp(18px, 2vw, 40px);
-    justify-content: center;
-    align-items: center;
-  }
+
   .form-group {
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr;
     text-align: center;
     gap: 20px;
   }
@@ -227,47 +227,28 @@ p {
   }
 }
 
+/* ===== Telas até 768px (celulares) ===== */
 @media (max-width: 768px) {
   main {
-    width: 100%;
-    height: 100vh;
-    overflow: hidden;
+    padding-bottom: 40px;
   }
+
   .card {
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-    height: 600px;
-    margin: 20px;
-  }
-  .resultado-card h3,
-  .resultado-card p {
-    display: flex;
-    font-size: clamp(18px, 2vw, 40px);
-    justify-content: center;
-    align-items: center;
-  }
-  .card h2 {
-    text-align: center;
-  }
-  .form-group {
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr;
-    text-align: center;
-    gap: 20px;
+    height: auto;
+    padding: 20px;
   }
 
   label {
     margin-top: 20px;
-    font-size: 1.1em;
-    margin-bottom: 0;
-    padding-bottom: 0;
+    font-size: 1.2em;
   }
 
   input {
-    width: 100%;
-    margin-top: 0;
-    padding-bottom: 0;
     font-weight: 500;
+  }
+
+  .form-group {
+    grid-template-columns: 1fr;
+    gap: 20px;
   }
 }
